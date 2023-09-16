@@ -1,15 +1,13 @@
 #ifndef MAIN_H
 #define MAIN_H
-<<<<<<< HEAD
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stddef.h>
-=======
 #include <stdarg.h>
+#include <unistd.h>
 
->>>>>>> 1db954db222c2f3f7b4cec5b8139db3e8178313c
-int _putchar(char c);
 int _printf(const char *format, ...);
+int numlen(int n);
+int numlen_unsigned(unsigned int n);
+int print_binary(unsigned int n);
 
-#endif
+#endif /* MAIN_H */
+

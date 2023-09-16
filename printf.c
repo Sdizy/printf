@@ -1,125 +1,64 @@
-<<<<<<< HEAD
 #include <stdio.h>
 #include <stdarg.h>
-
-int _printf(const char *format, ...)
-{
-	int c = 0;
-
-	va_list args;
-	va_start(args, format);
-	
-	while (*format)
-	{
-		if (*format != '%')
-		{
-			putchar(*format);
-			c++;
-		}
-		else
-		{
-			format++;
-			if (*format == '\0')
-			{
-				break;
-			}
-			else if (*format == 'c')
-			{
-				char c = va_arg(args, int);
-				putchar(c);
-				c++;
-			}
-			else if (*format == 's')
-			{
-				char *str = va_arg(args, char*);
-				while (*str)
-				{
-					putchar(*str);
-					str++;
-					c++;
-				}
-			}
-			else if (*format == '%')
-			{
-				putchar('%');
-				c++;
-			}
-			else
-			{
-
-				putchar('%');
-				c++;
-				format--;
-			}
-		}
-		format++;
-	}
-	
-	va_end(args);
-	return (c);
-}
-=======
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
 
 /**
- * _printf - prints formatted data to stdout
- * @format: string that contains the format to print
- * Return: number of characters written
+ * _printf - Custom printf function
+ * @format: The format string
+ *
+ * Return: The number of characters printed (excluding the null byte)
  */
-
 int _printf(const char *format, ...)
+
 {
-int printed_chars = 0;
-    va_list args;
+    int printed_chars = 0; 
+    va_list args; 
+
     va_start(args, format);
 
     while (*format)
     {
-        if (*format == '%')
+        if (*format != '%')
         {
-            format++; 
-	    switch (*format)
-            {
-                case 'c':
-                    putchar(va_arg(args, int));
-                    printed_chars++;
-                    break;
-
-                case 's':
-                    printed_chars += printf("%s", va_arg(args, char *));
-                    break;
-
-                case '%':
-                    putchar('%');
-                    printed_chars++;
-                    break;
-
-                default:
-                    putchar('%'); 
-                    putchar(*format);
-                    printed_chars += 2;
-                    break;
-            }
+            putchar(*format); 
+            printed_chars++;
         }
         else
         {
-            putchar(*format);
-            printed_chars++;
+            format++; 
+
+            if (*format == 'c')
+            {
+                char c = va_arg(args, int); 
+                putchar(c);
+                printed_chars++;
+            }
+            else if (*format == 's')
+            {
+                char *str = va_arg(args, char *); 
+                if (str == NULL)
+                    str = "(null)";
+                while (*str)
+                {
+                    putchar(*str); 
+                    printed_chars++;
+                    str++;
+                }
+            }
+            else if (*format == '%')
+            {
+                putchar('%'); 
+   		printed_chars++;
+            }
+            format++;
         }
-        format++; 
     }
 
-    va_end(args);
+    va_end(args); 
     return printed_chars;
 }
 
-int main()
+int main() 
 {
-    int count = _printf("Hello, %s! This is a %c example: %%.\n", "world", 'C');
-    printf("\nTotal characters printed: %d\n", count);
-    return 0;
+       return 0;
 }
-
->>>>>>> 1db954db222c2f3f7b4cec5b8139db3e8178313c
