@@ -49,6 +49,12 @@ else if (*format == '%')
 putchar('%');
 printed_chars++;
 }
+else if (*format == 'd' || *format == 'i')
+{
+int num = va_arg(args, int);
+printf("%d", num);
+printed_chars += numlen(num);
+}
 format++;
 }
 }
