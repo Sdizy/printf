@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-void putchar(char c);
+void _putchar(char);
 int _printf(const char *format, ...);
 
 #endif
