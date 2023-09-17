@@ -1,12 +1,10 @@
 #include "main.h"
 /**
  * _printf - Printf function
- * @format: format.
+ * @format: format
  * Return: Printed chars.
  */
-
 int _printf(const char *format, ...)
-
 {
 	const char *ptr;
 	int printed_chars = 0;
@@ -14,7 +12,6 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
-
 	if (format == NULL)
 		return (-1);
 	for (ptr = format; *ptr; ptr++)
@@ -26,7 +23,6 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			/**Handle format specifiers*/
 			ptr++;
 			switch (*ptr)
 			{
@@ -40,7 +36,6 @@ int _printf(const char *format, ...)
 					printed_chars += handle_percent(args);
 					break;
 				default:
-					/** Unsupported format specifier, just print it*/
 					putchar('%');
 					putchar(*ptr);
 					printed_chars += 2;
