@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdarg.h>
 
 /**handle characters*/
 int handle_char(va_list args)
@@ -28,12 +30,15 @@ int handle_percent(va_list args)
 	return 1;
 }
 
+/** Define a new function to handle unsupported format specifiers*/
+int handle_unsupported_specifier(const char *ptr) 
+{
+    putchar('%');
+    putchar(*ptr);
+    return 2; 
+}
+
 /*for d and i specifiers*/
-
-#include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
-
 int handle_int_specifier(va_list args)
 {
     int num = va_arg(args, int);

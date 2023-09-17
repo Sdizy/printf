@@ -16,6 +16,8 @@ int handle_char(va_list args);
 int handle_string(va_list args);
 int handle_percent(va_list args);
 int handle_int_specifier(va_list args);
+int handle_unsupported_specifier(const char *ptr);
+int process_format(const char *fmt, va_list args);
 
 #endif /* MAIN_H */
 

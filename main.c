@@ -15,10 +15,6 @@ int main()
 }
 
 /*To handle d and i specifiers*/
-
-#include "main.h"
-#include "format_handlers.h"
-
 int handle()
 {
     int x = 42;
