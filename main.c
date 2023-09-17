@@ -14,3 +14,17 @@ int main()
     return 0;
 }
 
+/*To handle d and i specifiers*/
+
+#include "main.h"
+#include "format_handlers.h"
+
+int handle()
+{
+    int x = 42;
+    int y = -123;
+
+    _printf("Testing integer specifiers: %d, %i\n", x, y);
+
+    return 0;
+}

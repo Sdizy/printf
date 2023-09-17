@@ -27,3 +27,17 @@ int handle_percent(va_list args)
 	putchar('%');
 	return 1;
 }
+
+/*for d and i specifiers*/
+
+#include "main.h"
+#include <stdio.h>
+#include <stdarg.h>
+
+int handle_int_specifier(va_list args)
+{
+    int num = va_arg(args, int);
+
+    printf("%d", num);
+    return 1;
+}
