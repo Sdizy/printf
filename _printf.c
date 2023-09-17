@@ -4,7 +4,9 @@
 /**
  * _printf - Printf function
  * @format: format
- * @args: argument
+ * process_format - Process the format string and handle format specifiers.
+ * @fmt: The format string.
+ * @args: The variable arguments list.
  * Return: Printed chars.
  */
 int process_format(const char *fmt, va_list args);
@@ -17,10 +19,11 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 
 	printed_chars += process_format(format, args);
-	
+
 	va_end(args);
 	return (printed_chars);
 }
+
 
 /**
  * process_format - format function called
