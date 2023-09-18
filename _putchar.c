@@ -10,3 +10,25 @@ int _putchar(char c)
 	return (write(1, &c, 1));
 }
 
+
+
+
+/**
+ * _puts - prints a string to stdout
+ * @str: pointer to the string to print
+ * Return: number of chars written
+ */
+int _puts(char *str)
+{
+    int count = 0;
+
+    while (*str)
+    {
+        _putchar(*str);
+        count++;
+        str++;
+    }
+
+    return (count);
+}
+
