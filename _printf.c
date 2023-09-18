@@ -4,10 +4,11 @@
 /**
  * _printf - Printf function
  * @format: format
+ * @fmt: format
  * @args: argument
  * Return: Printed chars.
  */
-int process_format(const char *fmt, va_list args);
+int process_format(const char *fmt, va_list args)
 int _printf(const char *format, ...)
 {
 	int printed_chars = 0;
@@ -17,7 +18,7 @@ int _printf(const char *format, ...)
 	va_start(args, format);
 
 	printed_chars += process_format(format, args);
-	
+
 	va_end(args);
 	return (printed_chars);
 }
@@ -70,4 +71,27 @@ int process_format(const char *fmt, va_list args)
 		}
 	}
 	return (printed_chars);
+}
+
+/**
+ * _printf - printf function
+ * @format: format
+ * Return: number of chars
+ */
+
+int _printf(const char *format, ...)
+{
+	va_list args;
+	va_start(args, format);
+	
+	int printed_chars = process_format(format, args);
+
+	va_end(args);
+	return printed_chars;
+}
+
+int main(void)
+{
+	_printf("%d\n", 98);
+	return (0);
 }
