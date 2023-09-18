@@ -6,7 +6,7 @@
 int handle_char(va_list args)
 {
 char c = va_arg(args, int);
-putchar(c);
+_putchar(c);
 return 1;
 }
 
@@ -26,15 +26,15 @@ return 6;
 int handle_percent(va_list args)
 {
 (void)args;
-putchar('%');
+_putchar('%');
 return 1;
 }
 
 /** Define a new function to handle unsupported format specifiers*/
 int handle_unsupported_specifier(const char *ptr)
 {
-putchar('%');
-putchar(*ptr);
+_putchar('%');
+_putchar(*ptr);
 return 2;
 }
 
@@ -43,6 +43,6 @@ int handle_int_specifier(va_list args)
 {
 int num = va_arg(args, int);
 
-printf("%d", num);
+_printf("%d", num);
 return 1;
 }

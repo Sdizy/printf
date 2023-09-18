@@ -1,76 +1,38 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
+
 /**
- * _printf - Printf function
- * @format: format
- * process_format - Process the format string and handle format specifiers.
- * @fmt: The format string.
- * @args: The variable arguments list.
- * Return: Printed chars.
+ * _printf - printf 
+ * @format: format string printed
+ * Return: number of characters printed
  */
-int process_format(const char *fmt, va_list args);
+
 int _printf(const char *format, ...)
 {
-	int printed_chars = 0;
-
+	int chars_printed;
+	print_format_t format_list[] = {
+		{"%", handle_percent},
+		{"d", handle_integer},
+		{"i", handle_integer},
+		{"c", handle_char},
+		{"s", handle_string},
+		{"b", handle_binary},
+		{"u", handle_unsigned_integer},
+		{"o", handle_octal},
+		{"x", handle_hex},
+		{"X", handle_HEX},
+		{"S", handle_String},
+		{"p", handle_pointer},
+		{"r", handle_rev},
+		{"R", handle_rot13},
+		{NULL, NULL},
+	};
 	va_list args;
 
+	if (format == NULL)
+		return (-1);
+
 	va_start(args, format);
-
-	printed_chars += process_format(format, args);
-
+	chars_printed = process_format(format, format_list, args);
 	va_end(args);
-	return (printed_chars);
-}
-
-
-/**
- * process_format - format function called
- * @fmt: format called
- */
-int process_format(const char *fmt, va_list args)
-{
-	const char *ptr;
-	int printed_chars = 0;
-
-	for (ptr = fmt; *ptr; ptr++)
-	{
-		if (*ptr != '%')
-		{
-			putchar(*ptr);
-			printed_chars++;
-		}
-		else
-		{
-			ptr++;
-			if (*ptr == '\0')
-			{
-				break;
-			}
-			else
-			{
-			switch (*ptr)
-			{
-				case 'd':
-				case 'i':
-					printed_chars += handle_int_specifier(args);
-					break;
-				case 'c':
-					printed_chars += handle_char(args);
-					break;
-				case 's':
-					printed_chars += handle_string(args);
-					break;
-				case '%':
-					printed_chars += handle_percent(args);
-					break;
-				default:
-					printed_chars += handle_unsupported_specifier(ptr);
-					break;
-			}
-			}
-		}
-	}
-	return (printed_chars);
+	return (chars_printed);
 }
